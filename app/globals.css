@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ──────────────────────────────────────────────────────────
+   KPC Design System — globals
+   ────────────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    --kpc-night: #0A0F1C;
+    --kpc-deep: #0F1729;
+    --kpc-steel: #1E2A44;
+    --kpc-fog: #F5F7FA;
+    --kpc-paper: #FFFFFF;
+    --kpc-ink: #0A0F1C;
+    --kpc-muted: #5B6478;
+    --kpc-emergency: #E63946;
+    --kpc-signal: #FF7A1A;
+    --kpc-gold: #D4A85A;
+    --kpc-success: #2DBE7E;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-kpc-paper text-kpc-ink font-sans;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  ::selection {
+    @apply bg-kpc-signal/30 text-kpc-night;
+  }
+
+  /* Headings inherit display font + tight tracking */
+  h1, h2, h3 {
+    @apply font-display tracking-tight text-balance;
+  }
+
+  /* Hide scrollbar utility for horizontal scroll containers */
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+  .scrollbar-none { scrollbar-width: none; }
+}
+
+@layer components {
+  /* Section shells — keep page composition clean */
+  .section-dark {
+    @apply relative bg-kpc-night text-kpc-paper py-24 md:py-32 overflow-hidden;
+  }
+  .section-light {
+    @apply relative bg-kpc-fog text-kpc-ink py-24 md:py-32 overflow-hidden;
+  }
+  .section-paper {
+    @apply relative bg-kpc-paper text-kpc-ink py-24 md:py-32 overflow-hidden;
+  }
+
+  .container-kpc {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Subtle 3% grain overlay for dark sections */
+  .grain-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.5'/></svg>");
+    mix-blend-mode: overlay;
+  }
+
+  /* Card primitives */
+  .card-dark {
+    @apply rounded-2xl border border-white/8 bg-kpc-deep/80 backdrop-blur-sm shadow-kpc-card;
+  }
+  .card-light {
+    @apply rounded-2xl border border-black/8 bg-white shadow-[0_8px_30px_-10px_rgba(0,0,0,0.08)];
+  }
+
+  /* Eyebrow label used across sections */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-kpc-signal;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply inline-block h-px w-8 bg-kpc-signal;
+  }
+
+  /* Focus ring — accessible, brand-tinted */
+  .focus-ring {
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-kpc-signal focus-visible:ring-offset-2 focus-visible:ring-offset-kpc-night;
+  }
+
+  /* Form input used in the EmergencyDialog */
+  .kpc-input {
+    @apply w-full h-11 rounded-xl bg-white/5 border border-white/10 px-3.5 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-kpc-signal focus:ring-2 focus:ring-kpc-signal/30 transition;
+  }
+  textarea.kpc-input {
+    @apply h-auto py-3;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+
+  /* Gradient text for the "signal" accent moments */
+  .text-gradient-signal {
+    @apply bg-gradient-to-br from-kpc-signal via-orange-300 to-kpc-gold bg-clip-text text-transparent;
+  }
+}
+
+/* prefers-reduced-motion — collapse all decorative motion to opacity-only */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
