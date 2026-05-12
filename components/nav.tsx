@@ -42,8 +42,8 @@ export function Nav() {
       className={cn(
         "sticky top-9 z-40 w-full transition-colors duration-300",
         scrolled
-          ? "bg-kpc-night/70 backdrop-blur-xl border-b border-white/8"
-          : "bg-transparent border-b border-transparent",
+          ? "bg-kpc-night/85 backdrop-blur-xl border-b border-white/8"
+          : "bg-kpc-night/45 backdrop-blur-md border-b border-white/5",
       )}
     >
       <div className="container-kpc h-16 md:h-20 flex items-center justify-between gap-6">
