@@ -48,3 +48,6 @@ Thumbs.db
 
 # Local data (project-specific)
 ruvector.db
+
+# Claude Code internal worktrees (never commit)
+.claude/worktrees/
