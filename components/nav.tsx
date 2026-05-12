@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { cn } from "@/lib/cn";
@@ -11,11 +12,18 @@ import { Button } from "./button";
 import { useScrollProgress } from "@/lib/hooks";
 import { KPC_EASE } from "@/lib/motion";
 
+/** True when the current route is the link's href or one of its children. */
+function isLinkActive(currentPath: string, href: string): boolean {
+  if (href === "/") return currentPath === "/";
+  return currentPath === href || currentPath.startsWith(href + "/");
+}
+
 /**
  * Sticky nav. Transparent over the hero, glass-blurred after a small scroll.
  * Includes a 1px brand-accent scroll-progress bar pinned along the bottom.
  */
 export function Nav() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMega, setOpenMega] = useState<string | null>(null);
@@ -59,6 +67,7 @@ export function Nav() {
             <NavItem
               key={item.label}
               item={item}
+              active={isLinkActive(pathname, item.href)}
               isOpen={openMega === item.label}
               onOpen={() => setOpenMega(item.label)}
               onClose={() => setOpenMega((cur) => (cur === item.label ? null : cur))}
@@ -112,11 +121,13 @@ function Logo() {
 
 function NavItem({
   item,
+  active,
   isOpen,
   onOpen,
   onClose,
 }: {
   item: (typeof NAV_LINKS)[number];
+  active: boolean;
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
@@ -131,10 +142,22 @@ function NavItem({
     >
       <Link
         href={item.href}
-        className="inline-flex items-center gap-1 px-3 py-2 text-sm font-medium text-white/80 hover:text-white rounded-md focus-ring"
+        aria-current={active ? "page" : undefined}
+        className={cn(
+          "relative inline-flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md focus-ring transition-colors",
+          active ? "text-white" : "text-white/70 hover:text-white",
+        )}
       >
         {item.label}
         {hasChildren && <ChevronDown className="size-3.5 opacity-60" aria-hidden />}
+        {active && (
+          <motion.span
+            layoutId="nav-active-pill"
+            aria-hidden
+            className="absolute -bottom-px left-3 right-3 h-px bg-kpc-signal"
+            transition={{ type: "spring", stiffness: 400, damping: 30 }}
+          />
+        )}
       </Link>
 
       <AnimatePresence>

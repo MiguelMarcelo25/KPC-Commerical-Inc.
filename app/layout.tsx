@@ -12,6 +12,7 @@ import { Footer } from "@/components/footer";
 import { EmergencyDialog } from "@/components/emergency-dialog";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { CursorDot } from "@/components/cursor-dot";
+import { SkipToContent } from "@/components/skip-to-content";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -100,10 +101,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
         <Providers>
+          <SkipToContent />
           <SmoothScroll>
             <EmergencyBar />
             <Nav />
-            <main className="flex-1">{children}</main>
+            <main id="main-content" tabIndex={-1} className="flex-1 outline-none">
+              {children}
+            </main>
             <Footer />
             <EmergencyDialog />
             <CursorDot />
