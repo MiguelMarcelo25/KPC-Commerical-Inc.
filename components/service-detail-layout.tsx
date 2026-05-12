@@ -135,7 +135,7 @@ export function ServiceDetailLayout({ service }: { service: Service }) {
           <div className="max-w-3xl mb-14">
             <span className="eyebrow mb-6">Capabilities</span>
             <h2 className="mt-6 font-display text-display-lg text-kpc-ink leading-tight">
-              What's included on every {service.name.toLowerCase()} engagement.
+              What&apos;s included on every {service.name.toLowerCase()} engagement.
             </h2>
             <p className="mt-5 text-lg text-kpc-muted leading-relaxed">
               Every line below is standard scope — not an upsell. Documented to industry standards, billed to insurance, delivered with photo evidence.

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ShieldCheck, Zap, Building2 } from "lucide-react";
 
-import { SITE, NAV_LINKS } from "@/lib/site";
+import { SITE } from "@/lib/site";
 import { SERVICES, CASE_STUDIES, TESTIMONIALS, STATS, FAQS } from "@/lib/content";
 import { fadeInUp, stagger, KPC_EASE } from "@/lib/motion";
 

@@ -48,7 +48,7 @@ export function MapPanel() {
         viewport={{ once: true, amount: 0.4 }}
         className="absolute inset-0"
       >
-        {PINS.map((p, i) => (
+        {PINS.map((p) => (
           <motion.li
             key={p.label}
             variants={{
