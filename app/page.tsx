@@ -143,7 +143,7 @@ export default function HomePage() {
       {/* ────────────────────────── 8. COMMERCIAL FOCUS ────────────────────────── */}
       <section className="section-light">
         <div className="container-kpc">
-          <div className="grid lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-16 items-start">
+          <div className="grid lg:grid-cols-[minmax(0,360px)_minmax(0,1fr)] gap-12 lg:gap-14 items-start">
             <div className="lg:sticky lg:top-32">
               <span className="eyebrow">Commercial</span>
               <h2 className="mt-5 font-display text-display-lg font-semibold text-kpc-ink leading-[0.95]">
@@ -157,7 +157,7 @@ export default function HomePage() {
               </Button>
             </div>
 
-            <div className="bg-kpc-night rounded-3xl p-6 md:p-10">
+            <div className="rounded-3xl bg-kpc-night p-4 md:p-6">
               <IndustryTabs />
             </div>
           </div>
