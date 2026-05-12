@@ -6,6 +6,7 @@ import { useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import type { Service } from "@/lib/content";
 import { cn } from "@/lib/cn";
+import { TiltCard } from "./tilt-card";
 
 /**
  * Signature homepage moment. Each service is a full-height card that
@@ -52,10 +53,11 @@ function StickyCard({
       className="sticky"
       style={{ top, paddingBottom: index === total - 1 ? "0" : "0" }}
     >
+      <TiltCard max={3} className="relative mx-auto w-full max-w-6xl rounded-3xl">
       <motion.article
         style={{ scale, opacity }}
         className={cn(
-          "relative mx-auto w-full max-w-6xl",
+          "relative w-full",
           "rounded-3xl border border-white/8 bg-kpc-deep text-white shadow-kpc-card overflow-hidden",
           "min-h-[520px] md:min-h-[600px]",
         )}
@@ -102,6 +104,7 @@ function StickyCard({
           </div>
         </div>
       </motion.article>
+      </TiltCard>
     </div>
   );
 }

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Clock, MapPin } from "lucide-react";
 import { SITE } from "@/lib/site";
+import { LiveTicker } from "./live-ticker";
 
 /**
  * Top sticky strip — 36px tall, deep night bg, pulsing red dot.
@@ -37,7 +38,8 @@ export function EmergencyBar() {
         </div>
 
         <div className="flex items-center gap-4">
-          <span className="hidden md:inline-flex items-center gap-1.5 text-white/60">
+          <LiveTicker />
+          <span className="hidden lg:inline-flex items-center gap-1.5 text-white/60">
             <MapPin className="size-3" aria-hidden />
             <span>{SITE.region}</span>
           </span>

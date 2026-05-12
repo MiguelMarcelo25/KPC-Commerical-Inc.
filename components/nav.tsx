@@ -56,10 +56,20 @@ export function Nav() {
     >
       <div className="container-kpc h-16 md:h-20 flex items-center justify-between gap-6">
         <Link href="/" className="flex items-center gap-2.5 focus-ring rounded-md" aria-label={`${SITE.name} home`}>
-          <Logo />
-          <span className="hidden sm:inline font-display text-lg font-semibold text-white tracking-tight">
+          <motion.span
+            animate={{ scale: scrolled ? 0.88 : 1 }}
+            transition={{ duration: 0.35, ease: KPC_EASE }}
+            className="origin-left"
+          >
+            <Logo />
+          </motion.span>
+          <motion.span
+            animate={{ scale: scrolled ? 0.92 : 1, opacity: scrolled ? 0.9 : 1 }}
+            transition={{ duration: 0.35, ease: KPC_EASE }}
+            className="hidden sm:inline font-display text-lg font-semibold text-white tracking-tight origin-left"
+          >
             KPC<span className="text-kpc-signal">.</span>
-          </span>
+          </motion.span>
         </Link>
 
         <nav aria-label="Primary" className="hidden lg:flex items-center gap-1">

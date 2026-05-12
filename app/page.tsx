@@ -14,6 +14,7 @@ import { fadeInUp, stagger, KPC_EASE } from "@/lib/motion";
 import { Button } from "@/components/button";
 import { PhoneButton } from "@/components/phone-button";
 import { SplitText } from "@/components/split-text";
+import { Reveal } from "@/components/reveal";
 import { StatCounter } from "@/components/stat-counter";
 import { MarqueeStrip } from "@/components/marquee-strip";
 import { StickyCardStack } from "@/components/sticky-card-stack";
@@ -129,7 +130,8 @@ export default function HomePage() {
         <div className="container-kpc mb-16">
           <span className="eyebrow">Services</span>
           <h2 className="mt-5 font-display text-display-lg font-semibold text-kpc-ink max-w-3xl">
-            Every restoration service. <span className="text-kpc-muted">One contractor.</span>
+            <Reveal text="Every restoration service." />{" "}
+            <span className="text-kpc-muted"><Reveal text="One contractor." /></span>
           </h2>
           <p className="mt-5 max-w-2xl text-lg text-kpc-muted leading-relaxed">
             Mitigation through reconstruction. Same project manager from the first call to the final invoice. Scroll to meet the seven services we run end-to-end.
@@ -147,7 +149,8 @@ export default function HomePage() {
           <div className="max-w-2xl mb-16">
             <span className="eyebrow">Our process</span>
             <h2 className="mt-5 font-display text-display-lg font-semibold text-white">
-              How we restore. Five steps. <span className="text-kpc-muted">Zero confusion.</span>
+              <Reveal text="How we restore. Five steps." />{" "}
+              <span className="text-kpc-muted"><Reveal text="Zero confusion." /></span>
             </h2>
             <p className="mt-5 text-lg text-white/70 leading-relaxed">
               Same crew, same paperwork, same accountability — from the first dispatch call to the final walk with your property manager.
@@ -164,7 +167,7 @@ export default function HomePage() {
             <div className="lg:sticky lg:top-32">
               <span className="eyebrow">Commercial</span>
               <h2 className="mt-5 font-display text-display-lg font-semibold text-kpc-ink leading-[0.95]">
-                Built for commercial property.
+                <Reveal text="Built for commercial property." />
               </h2>
               <p className="mt-6 text-lg text-kpc-muted leading-relaxed max-w-md">
                 We exist for property managers, asset owners, hospital EVS directors, and insurance partners. Not consumer cleanup.
@@ -327,21 +330,46 @@ export default function HomePage() {
       </section>
 
       {/* ────────────────────────── 13. INSURANCE PARTNERS ────────────────────────── */}
-      <section className="section-light">
-        <div className="container-kpc text-center">
+      <section className="section-light overflow-hidden">
+        <div className="container-kpc text-center mb-14">
           <span className="eyebrow">Insurance</span>
           <h2 className="mt-5 font-display text-display-lg font-semibold text-kpc-ink mx-auto max-w-3xl">
-            We work with every major carrier.
+            <Reveal text="We work with every major carrier." />
           </h2>
           <p className="mt-5 text-lg text-kpc-muted max-w-2xl mx-auto">
-            Travelers · Chubb · Liberty Mutual · FM Global · Zurich · AIG · The Hartford · State Farm · Allstate · Farmers · Nationwide · Philadelphia
+            Every commercial property carrier in the region. Bring us into the claim or have your adjuster do it.
           </p>
-          <div className="mt-12 grid grid-cols-3 md:grid-cols-6 gap-4 max-w-4xl mx-auto">
-            {["Travelers", "Chubb", "Liberty", "FM Global", "Zurich", "AIG", "The Hartford", "State Farm", "Allstate", "Farmers", "Nationwide", "Philly"].map((name) => (
-              <div key={name} className="aspect-[2/1] rounded-xl border border-black/8 bg-white flex items-center justify-center text-xs font-display font-semibold text-kpc-muted/80">
-                {name}
-              </div>
-            ))}
+        </div>
+
+        {/* Two marquee rows scrolling in opposite directions for momentum */}
+        <div className="relative">
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-kpc-fog to-transparent z-10" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-kpc-fog to-transparent z-10" />
+          <div className="flex animate-marquee gap-4 py-2 hover:[animation-play-state:paused]">
+            {[...Array(2)].flatMap((_, dup) =>
+              ["Travelers", "Chubb", "Liberty Mutual", "FM Global", "Zurich", "AIG", "The Hartford", "State Farm"].map((name) => (
+                <div
+                  key={`r1-${dup}-${name}`}
+                  aria-hidden={dup === 1}
+                  className="shrink-0 w-44 aspect-[2/1] rounded-xl border border-black/8 bg-white flex items-center justify-center text-sm font-display font-semibold text-kpc-muted/80 hover:text-kpc-ink hover:border-kpc-signal/30 transition"
+                >
+                  {name}
+                </div>
+              )),
+            )}
+          </div>
+          <div className="flex animate-marquee gap-4 py-2 mt-2 [animation-direction:reverse] hover:[animation-play-state:paused]">
+            {[...Array(2)].flatMap((_, dup) =>
+              ["Allstate", "Farmers", "Nationwide", "Philadelphia", "CNA", "Hanover", "Berkley", "Cincinnati"].map((name) => (
+                <div
+                  key={`r2-${dup}-${name}`}
+                  aria-hidden={dup === 1}
+                  className="shrink-0 w-44 aspect-[2/1] rounded-xl border border-black/8 bg-white flex items-center justify-center text-sm font-display font-semibold text-kpc-muted/80 hover:text-kpc-ink hover:border-kpc-signal/30 transition"
+                >
+                  {name}
+                </div>
+              )),
+            )}
           </div>
         </div>
       </section>
