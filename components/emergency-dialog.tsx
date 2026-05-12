@@ -92,11 +92,14 @@ export function EmergencyDialog() {
             </Dialog.Overlay>
             <Dialog.Content asChild>
               <motion.div
-                initial={{ opacity: 0, scale: 0.96, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.96, y: 20 }}
+                // Framer Motion owns ALL transforms here — combining Tailwind
+                // -translate-* with motion's y prop loses the centering because
+                // motion rewrites the transform string on every keyframe.
+                initial={{ opacity: 0, scale: 0.96, x: "-50%", y: "calc(-50% + 16px)" }}
+                animate={{ opacity: 1, scale: 1, x: "-50%", y: "-50%" }}
+                exit={{ opacity: 0, scale: 0.96, x: "-50%", y: "calc(-50% + 16px)" }}
                 transition={{ duration: 0.3, ease: KPC_EASE }}
-                className="fixed left-1/2 top-1/2 z-50 w-[min(640px,calc(100vw-2rem))] -translate-x-1/2 -translate-y-1/2 max-h-[90vh] overflow-y-auto rounded-3xl border border-white/8 bg-kpc-deep text-white shadow-kpc-card"
+                className="fixed left-1/2 top-1/2 z-50 w-[min(640px,calc(100vw-2rem))] max-h-[90vh] overflow-y-auto rounded-3xl border border-white/8 bg-kpc-deep text-white shadow-kpc-card"
               >
                 <div className="p-7 md:p-9">
                   <div className="flex items-start justify-between mb-6">
