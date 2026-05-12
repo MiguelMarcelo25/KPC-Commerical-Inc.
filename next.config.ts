@@ -5,7 +5,9 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
-      // Add CDN/asset hosts here when needed
+      // Unsplash — used for placeholder photography until production
+      // assets are dropped into /public/images/
+      { protocol: "https", hostname: "images.unsplash.com" },
     ],
   },
   experimental: {

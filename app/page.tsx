@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ShieldCheck, Zap, Building2 } from "lucide-react";
 
@@ -224,15 +225,38 @@ export default function HomePage() {
           </div>
           <BeforeAfterSlider
             before={
-              <div className="absolute inset-0 bg-gradient-to-br from-stone-700 via-stone-800 to-stone-900">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.4),transparent)]" />
-                <div className="absolute bottom-6 left-6 text-white/60 font-display text-2xl">Water-damaged ceiling · 8th floor</div>
-              </div>
+              <>
+                {/* IMAGE: water-damaged commercial interior — dingy, lit warehouse */}
+                <Image
+                  src="https://images.unsplash.com/photo-1564540586988-aa4e53c3d799?w=1600&q=80&auto=format&fit=crop"
+                  alt="Water-damaged commercial ceiling on the 8th floor before mitigation"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 60vw"
+                  className="object-cover"
+                  priority={false}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                <div className="absolute bottom-6 left-6 text-white font-display text-xl md:text-2xl drop-shadow-lg">
+                  Water-damaged ceiling · 8th floor
+                </div>
+              </>
             }
             after={
-              <div className="absolute inset-0 bg-gradient-to-br from-stone-100 via-white to-stone-200">
-                <div className="absolute bottom-6 left-6 text-kpc-ink/70 font-display text-2xl">Restored · 4 days</div>
-              </div>
+              <>
+                {/* IMAGE: restored modern commercial interior — clean, bright */}
+                <Image
+                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80&auto=format&fit=crop"
+                  alt="The same commercial interior restored — clean, lit, occupied within 4 days"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 60vw"
+                  className="object-cover"
+                  priority={false}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-white/85 via-white/10 to-transparent" />
+                <div className="absolute bottom-6 left-6 text-kpc-ink font-display text-xl md:text-2xl">
+                  Restored · 4 days
+                </div>
+              </>
             }
           />
         </div>
