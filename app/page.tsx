@@ -1,9 +1,11 @@
 "use client";
 
+import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight, ShieldCheck, Zap, Building2 } from "lucide-react";
+import { AnimatedMesh } from "@/components/animated-mesh";
 
 import { SITE } from "@/lib/site";
 import { SERVICES, CASE_STUDIES, TESTIMONIALS, STATS, FAQS } from "@/lib/content";
@@ -27,16 +29,29 @@ import { useEmergencyDialog } from "@/components/providers";
 export default function HomePage() {
   const { open } = useEmergencyDialog();
 
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  // Parallax: backdrop layers move slower than foreground text on scroll
+  const skylineY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const sirenY = useTransform(scrollYProgress, [0, 1], ["0%", "60%"]);
+  const heroFade = useTransform(scrollYProgress, [0, 0.8], [1, 0.4]);
+
   return (
     <>
       {/* ────────────────────────── 3. HERO ────────────────────────── */}
-      <section className="relative isolate overflow-hidden bg-kpc-night text-white pt-16 md:pt-24 pb-24 md:pb-32 grain-overlay">
-        {/* Layered backdrop */}
+      <section ref={heroRef} className="relative isolate overflow-hidden bg-kpc-night text-white pt-16 md:pt-24 pb-24 md:pb-32 grain-overlay">
+        {/* Layered backdrop with parallax */}
         <div className="absolute inset-0 bg-kpc-radial-night" />
-        <div className="absolute inset-0 overflow-hidden">
+        <AnimatedMesh intensity={0.14} />
+        <motion.div style={{ y: skylineY }} className="absolute inset-0 overflow-hidden">
           <SkylineSilhouette />
+        </motion.div>
+        <motion.div style={{ y: sirenY, opacity: heroFade }} className="absolute inset-0 overflow-hidden">
           <SirenSweep />
-        </div>
+        </motion.div>
 
         <div className="container-kpc relative">
           <motion.span
@@ -127,7 +142,8 @@ export default function HomePage() {
 
       {/* ────────────────────────── 7. PROCESS TIMELINE ────────────────────────── */}
       <section className="section-dark grain-overlay">
-        <div className="container-kpc">
+        <AnimatedMesh intensity={0.1} />
+        <div className="container-kpc relative">
           <div className="max-w-2xl mb-16">
             <span className="eyebrow">Our process</span>
             <h2 className="mt-5 font-display text-display-lg font-semibold text-white">
@@ -167,7 +183,8 @@ export default function HomePage() {
 
       {/* ────────────────────────── 9. ERA BAND ────────────────────────── */}
       <section className="section-dark grain-overlay">
-        <div className="container-kpc">
+        <AnimatedMesh intensity={0.16} />
+        <div className="container-kpc relative">
           <div className="max-w-3xl mb-12">
             <span className="eyebrow">Emergency Response Agreement</span>
             <h2 className="mt-5 font-display text-display-lg font-semibold text-white">
@@ -331,7 +348,8 @@ export default function HomePage() {
 
       {/* ────────────────────────── 14. COVERAGE MAP ────────────────────────── */}
       <section className="section-dark grain-overlay">
-        <div className="container-kpc">
+        <AnimatedMesh intensity={0.12} />
+        <div className="container-kpc relative">
           <div className="grid lg:grid-cols-[1fr_1.4fr] gap-12 items-center">
             <div>
               <span className="eyebrow">Service areas</span>
@@ -369,6 +387,7 @@ export default function HomePage() {
       {/* ────────────────────────── 16. FINAL CTA BAND ────────────────────────── */}
       <section className="relative overflow-hidden bg-kpc-night text-white py-28 md:py-40 grain-overlay">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_60%,rgba(230,57,70,0.18),transparent_55%)]" />
+        <AnimatedMesh intensity={0.22} colors={["rgba(230,57,70,1)", "rgba(255,122,26,1)"]} />
         <div className="container-kpc relative text-center">
           <h2 className="font-display text-display-xl font-semibold text-white max-w-5xl mx-auto leading-[0.95]">
             Damage doesn&apos;t wait. <span className="text-gradient-signal">Neither do we.</span>

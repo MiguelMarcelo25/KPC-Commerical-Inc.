@@ -10,6 +10,8 @@ import { EmergencyBar } from "@/components/emergency-bar";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { EmergencyDialog } from "@/components/emergency-dialog";
+import { SmoothScroll } from "@/components/smooth-scroll";
+import { CursorDot } from "@/components/cursor-dot";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -98,11 +100,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
         <Providers>
-          <EmergencyBar />
-          <Nav />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <EmergencyDialog />
+          <SmoothScroll>
+            <EmergencyBar />
+            <Nav />
+            <main className="flex-1">{children}</main>
+            <Footer />
+            <EmergencyDialog />
+            <CursorDot />
+          </SmoothScroll>
         </Providers>
       </body>
     </html>
