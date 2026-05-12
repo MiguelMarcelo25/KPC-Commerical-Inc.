@@ -172,12 +172,6 @@ export default function InsurancePage() {
                 className="aspect-square rounded-full border border-black/8 bg-white shadow-[0_8px_30px_-10px_rgba(0,0,0,0.06)] flex items-center justify-center p-4 text-center"
                 aria-label={`Carrier: ${c}`}
               >
-                <svg
-                  className="absolute pointer-events-none opacity-0"
-                  aria-hidden
-                  width="0"
-                  height="0"
-                />
                 <span className="font-display text-sm font-semibold text-kpc-ink leading-tight">
                   {c}
                 </span>

@@ -34,7 +34,7 @@ const DETAIL_ROWS = [
     n: "04",
     title: "Restore & Clean",
     detail:
-      "Once dry, antimicrobial treatment per IICRC S500 protocol, contents cleaning, and (where relevant) independent post-remediation verification. We don&apos;t pass a job to a clearance contractor we own — third-party means third-party.",
+      "Once dry, antimicrobial treatment per IICRC S500 protocol, contents cleaning, and (where relevant) independent post-remediation verification. We don’t pass a job to a clearance contractor we own — third-party means third-party.",
   },
   {
     n: "05",
@@ -141,10 +141,9 @@ export default function ProcessPage() {
                     {r.title}
                   </h3>
                 </div>
-                <p
-                  className="col-span-12 md:col-span-9 text-kpc-muted leading-relaxed"
-                  dangerouslySetInnerHTML={{ __html: r.detail }}
-                />
+                <p className="col-span-12 md:col-span-9 text-kpc-muted leading-relaxed">
+                  {r.detail}
+                </p>
               </article>
             ))}
           </div>

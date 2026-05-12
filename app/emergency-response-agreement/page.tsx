@@ -77,7 +77,7 @@ const ERA_FAQS: Faq[] = [
   },
   {
     q: "What if we already have a preferred restoration vendor?",
-    a: "Many of our ERA clients keep us as a secondary or overflow contact behind a primary vendor — particularly during regional CAT events when the primary is at capacity. We&apos;re comfortable being second-call.",
+    a: "Many of our ERA clients keep us as a secondary or overflow contact behind a primary vendor — particularly during regional CAT events when the primary is at capacity. We’re comfortable being second-call.",
   },
   {
     q: "Can the ERA span multiple properties?",
